@@ -16,15 +16,20 @@ This is a deployment using Docker compose that launches the following services:
 
 ## Usage
 
-1. Acquire required repositories:
+1. Install required software:
 
 ```shell
-cd ${HOME}
+apt install docker.io docker-compose maven openjdk-25-jdk-headless
+```
+
+2. Clone repositories for Keycloak extension development:
+
+```shell
 git clone https://github.com/b1-systems/custom-jpa-user-storage.git
 git clone https://github.com/b1-systems/keycloak-developer-deployment.git
 ```
 
-2. Build custom extension:
+3. Build custom extension:
 
 ```shell
 mvn -f custom-jpa-user-storage clean package
@@ -36,13 +41,13 @@ mvn -f custom-jpa-user-storage clean package
 - `custom-jpa-user-storage.jar` to folder `./keycloak-custom/providers`
 - `keycloak.conf.example` to folder `./keycloak-custom/conf/keycloak.conf`
 
-3. Build the customized Keycloak container:
+4. Build customized Keycloak container image:
 
 ```shell
 docker compose -f keycloak-developer-deployment/compose.yml build
 ```
 
-4. Launch the deployment:
+5. Run deployment:
 
 ```shell
 docker compose -f keycloak-developer-deployment/compose.yml up
