@@ -79,6 +79,7 @@ mvn -f custom-jpa-user-storage clean package
 - `custom-jpa-user-storage.jar` to folder `./keycloak-custom/providers`
 - `keycloak.conf.example` to folder `./keycloak-custom/conf/keycloak.conf`
 
+
 4. Build customized container images:
 
 This will build the following container images:
