@@ -5,7 +5,7 @@
 ##
 # Configuration
 
-keycloak_url="http://localhost:8080"
+keycloak_url="http://keycloak:8080"
 keycloak_realm="master"
 keycloak_admin_user="admin"
 keycloak_admin_password="admin"
@@ -32,11 +32,7 @@ check() {
 }
 
 kcadm_cmdline=(
-    docker exec \
-            --interactive \
-            --tty \
-            keycloak-developer-deployment-keycloak-1 \
-            /opt/keycloak/bin/kcadm.sh
+    /opt/keycloak/bin/kcadm.sh
 )
 
 kcadm() {
