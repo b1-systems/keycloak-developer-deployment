@@ -50,7 +50,7 @@ done
 
 ## Usage
 
-1. Install required software:
+### 1. Install required Software:
 
 ```shell
 sudo apt install \
@@ -60,14 +60,14 @@ sudo apt install \
   openjdk-25-jdk-headless
 ```
 
-2. Clone repositories for Keycloak extension development:
+### 2. Clone Repositories for Keycloak Extension Development
 
 ```shell
 git clone https://github.com/b1-systems/custom-jpa-user-storage.git
 git clone https://github.com/b1-systems/keycloak-developer-deployment.git
 ```
 
-3. Build custom extension:
+### 3. Build Custom Extension
 
 ```shell
 mvn -f custom-jpa-user-storage clean package
@@ -80,7 +80,7 @@ mvn -f custom-jpa-user-storage clean package
 - `keycloak.conf.example` to folder `./keycloak-custom/conf/keycloak.conf`
 
 
-4. Build customized container images:
+### 4. Build Customized Container Images
 
 This will build the following container images:
 
@@ -92,13 +92,13 @@ docker compose -f keycloak-developer-deployment/compose.yml build
 docker compose --profile test -f keycloak-developer-deployment/compose.yml build
 ```
 
-5. Run deployment:
+### 5. Run Deployment
 
 ```shell
 docker compose -f keycloak-developer-deployment/compose.yml up
 ```
 
-6. Execute tests
+### 6. Execute Tests
 
 Service `keycloak-test` from compose profile `test` will execute the following tests:
 
