@@ -56,3 +56,15 @@ docker compose -f keycloak-developer-deployment/compose.yml build
 ```shell
 docker compose -f keycloak-developer-deployment/compose.yml up
 ```
+
+6. Execute tests:
+
+  * 'custom-jpa-user-storage':
+    - Create user federation using custom provider
+    - Determine if expected test user is present
+    - Define custom user profile attribute
+    - Determine if attribute value of test user matches expected value
+
+```shell
+keycloak-developer-deployment/tests/custom-jpa-user-storage.sh
+```
