@@ -1,1 +1,3 @@
+keycloak-custom/conf/keycloak.conf
 keycloak-custom/providers
+sql/userdb.sql
