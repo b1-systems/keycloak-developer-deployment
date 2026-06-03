@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../keycloak-custom"
+		},
+		{
+			"path": "../custom-jpa-user-storage"
+		}
+	],
+	"settings": {}
+}
