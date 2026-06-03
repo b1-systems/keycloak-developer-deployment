@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a deployment using Docker compose that launches the following services:
+This project offers a Docker compose deployment with the following services:
 
 * "postgres":  
   PostgreSQL server, configured for prepared transactions (required by Keycloak's XA transactions)
@@ -13,6 +13,31 @@ This is a deployment using Docker compose that launches the following services:
   - using container image "keycloak-custom" built from folder
   [keycloak-custom](keycloak-custom)
   - started in development mode
+
+* "keycloak-test":  
+  - only started when selecting compose profile "test"
+  - using container image "keycloak-test" built from folder
+  [keycloak-test](keycloak-test)
+  - executes test procedures using `kcadm.sh`
+
+## Support for (vs)codium
+
+This project includes a workspace definition for vscodium (<https://github.com/VSCodium/vscodium>):
+* [keycloak-development.code-workspace](keycloak-development.code-workspace) .
+
+*Note:* To utilize codium effectively, the following extension should be installed:
+
+```shell
+for extension in \
+    docker.docker \
+    ms-azuretools.vscode-containers \
+    oracle.oracle-java \
+    redhat.vscode-yaml \
+    vscjava.vscode-maven
+do
+    codium --install-extension "$extension"
+done
+```
 
 ## Usage
 
