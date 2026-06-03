@@ -19,7 +19,11 @@ This is a deployment using Docker compose that launches the following services:
 1. Install required software:
 
 ```shell
-apt install docker.io docker-compose maven openjdk-25-jdk-headless
+sudo apt install \
+  docker.io \
+  docker-compose \
+  maven \
+  openjdk-25-jdk-headless
 ```
 
 2. Clone repositories for Keycloak extension development:
