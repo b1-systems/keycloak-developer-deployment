@@ -2,6 +2,15 @@
 
 ## Overview
 
+This is a highly automated deployment of PostgreSQL, Keycloak and a custom user
+storage extension for training and development purposes.
+
+This deployment is used for interactive development and testing of the demo
+extension "custom-ipa-user-storage":
+* <https://github.com/b1-systems/custom-jpa-user-storage>
+
+## Docker Compose Setup
+
 This project offers a Docker compose deployment with the following services:
 
 * "postgres":  
@@ -22,7 +31,7 @@ This project offers a Docker compose deployment with the following services:
 
 ## Support for (vs)codium
 
-This project includes a workspace definition for vscodium (<https://github.com/VSCodium/vscodium>):
+This project includes a workspace definition for [vscodium](https://github.com/VSCodium/vscodium):
 * [keycloak-development.code-workspace](keycloak-development.code-workspace) .
 
 *Note:* To utilize codium effectively, the following extension should be installed:
