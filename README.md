@@ -45,10 +45,16 @@ mvn -f custom-jpa-user-storage clean package
 - `custom-jpa-user-storage.jar` to folder `./keycloak-custom/providers`
 - `keycloak.conf.example` to folder `./keycloak-custom/conf/keycloak.conf`
 
-4. Build customized Keycloak container image:
+4. Build customized container images:
+
+This will build the following container images:
+
+* `keycloak-custom`: customized keycloak OCI that runs service "keycloak"
+* `keycloak-test` customized keycloak images that executes test procedures using `kcadm.sh` if compose profile "test" is selected
 
 ```shell
 docker compose -f keycloak-developer-deployment/compose.yml build
+docker compose --profile test -f keycloak-developer-deployment/compose.yml build
 ```
 
 5. Run deployment:
@@ -57,15 +63,15 @@ docker compose -f keycloak-developer-deployment/compose.yml build
 docker compose -f keycloak-developer-deployment/compose.yml up
 ```
 
-6. Execute tests running additional service `keycloak-test` from compose profile `test`:
+6. Execute tests
 
-This will execute the following tests:
+Service `keycloak-test` from compose profile `test` will execute the following tests:
 
-  * 'custom-jpa-user-storage':
-    - Create user federation using custom provider
-    - Determine if expected test user is present
-    - Define custom user profile attribute
-    - Determine if attribute value of test user matches expected value
+* 'custom-jpa-user-storage':
+  - Create user federation using custom provider
+  - Determine if expected test user is present
+  - Define custom user profile attribute
+  - Determine if attribute value of test user matches expected value
 
 ```shell
 docker compose -f keycloak-developer-deployment/compose.yml --profile test up
