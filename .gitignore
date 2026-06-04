@@ -1,3 +1,4 @@
 keycloak-custom/conf/keycloak.conf.d
 keycloak-custom/providers
 sql/custom-*.sql
+tests/custom-*
