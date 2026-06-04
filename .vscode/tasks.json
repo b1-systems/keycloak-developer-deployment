@@ -1,0 +1,35 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compose up",
+      "type": "docker-compose",
+      "dockerCompose": {
+        "up": {
+          "detached": false,
+          "build": true,
+          "services": ["postgres", "keycloak"]
+        },
+        "files": [
+          "${workspaceFolder}/compose.yml"
+        ]
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+    },
+    {
+      "label": "compose down",
+      "type": "docker-compose",
+      "dockerCompose": {
+        "down": {
+            "removeVolumes": true
+        },
+        "files": [
+          "${workspaceFolder}/compose.yml"
+        ]
+      },
+    }
+  ]
+}
