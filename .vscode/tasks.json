@@ -12,7 +12,7 @@
       "group": {
         "kind": "build",
         "isDefault": true
-      },
+      }
     },
     {
       "label": "Rebuild and restart compose deployment with test profile",
@@ -25,7 +25,7 @@
       "group": {
         "kind": "test",
         "isDefault": true
-      },
+      }
     },
     {
       "label": "Run compose up with container build",
@@ -33,7 +33,7 @@
       "dockerCompose": {
         "up": {
           "detached": false,
-          "build": true,
+          "build": true
         },
         "files": [
           "${workspaceFolder}/compose.yml"
