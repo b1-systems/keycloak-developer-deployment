@@ -63,6 +63,8 @@ sudo apt install \
 ### 2. Clone Repositories for Keycloak Extension Development
 
 ```shell
+git clone https://github.com/b1-systems/custom-auth-spi.git
+git clone https://github.com/b1-systems/custom-authenticator.git
 git clone https://github.com/b1-systems/custom-jpa-user-storage.git
 git clone https://github.com/b1-systems/keycloak-developer-deployment.git
 ```
@@ -70,15 +72,17 @@ git clone https://github.com/b1-systems/keycloak-developer-deployment.git
 ### 3. Build Custom Extension
 
 ```shell
+mvn -f custom-auth-spi clean package
+mvn -f custom-authenticator clean package
+mvn -f custom-jpa-user-storage clean package
 mvn -f custom-jpa-user-storage clean package
 ```
 
 *Note:* This will also deploy the following files to the developer deployment:
 
-- `userdb.sql` to folder `./sql`
-- `custom-jpa-user-storage.jar` to folder `./keycloak-custom/providers`
-- `keycloak.conf.example` to folder `./keycloak-custom/conf/keycloak.conf`
-
+- Additional SQL for initialization of "postgres" to folder `./sql`
+- JAR files of the custom provider(s) to folder `./keycloak-custom/providers`
+- Custom provider-specific `keycloak.conf` snippets to `./keycloak-custom/conf/keycloak.conf.d`
 
 ### 4. Build Customized Container Images
 
