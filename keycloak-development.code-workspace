@@ -4,8 +4,12 @@
 			"path": "."
 		},
 		{
+			"path": "../custom-auth-spi"
+		},
+		{
 			"path": "../custom-jpa-user-storage"
 		}
+
 	],
 	"settings": {}
 }
