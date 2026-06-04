@@ -64,7 +64,6 @@ sudo apt install \
 
 ```shell
 git clone https://github.com/b1-systems/custom-auth-spi.git
-git clone https://github.com/b1-systems/custom-authenticator.git
 git clone https://github.com/b1-systems/custom-jpa-user-storage.git
 git clone https://github.com/b1-systems/keycloak-developer-deployment.git
 ```
@@ -73,7 +72,6 @@ git clone https://github.com/b1-systems/keycloak-developer-deployment.git
 
 ```shell
 mvn -f custom-auth-spi clean package
-mvn -f custom-authenticator clean package
 mvn -f custom-jpa-user-storage clean package
 mvn -f custom-jpa-user-storage clean package
 ```
