@@ -2,13 +2,12 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "compose up",
+      "label": "run compose up with container build",
       "type": "docker-compose",
       "dockerCompose": {
         "up": {
           "detached": false,
           "build": true,
-          "services": ["postgres", "keycloak"]
         },
         "files": [
           "${workspaceFolder}/compose.yml"
@@ -20,7 +19,25 @@
       },
     },
     {
-      "label": "compose down",
+      "label": "run compose up with container build and test profile",
+      "type": "docker-compose",
+      "dockerCompose": {
+        "up": {
+          "detached": false,
+          "build": true,
+          "profiles": ["test"]
+        },
+        "files": [
+          "${workspaceFolder}/compose.yml"
+        ]
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+    },
+    {
+      "label": "run compose down with volume removal",
       "type": "docker-compose",
       "dockerCompose": {
         "down": {
