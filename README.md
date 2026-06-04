@@ -29,19 +29,17 @@ This project offers a Docker compose deployment with the following services:
   [keycloak-test](keycloak-test)
   - executes test procedures using `kcadm.sh`
 
-## Support for (vs)codium
+## Support for VS Code and VSCodium
 
 This project includes a workspace definition for [vscodium](https://github.com/VSCodium/vscodium):
 * [keycloak-development.code-workspace](keycloak-development.code-workspace) .
 
-*Note:* To utilize codium effectively, the following extension should be installed:
+*Note:* To run the pre-defined build tasks, the following extension should be installed:
 
 ```shell
 for extension in \
-    docker.docker \
     ms-azuretools.vscode-containers \
     oracle.oracle-java \
-    redhat.vscode-yaml \
     vscjava.vscode-maven
 do
     codium --install-extension "$extension"
@@ -65,6 +63,8 @@ sudo apt install \
 ```shell
 git clone https://github.com/b1-systems/custom-auth-spi.git
 git clone https://github.com/b1-systems/custom-jpa-user-storage.git
+# ... other custom extensions
+
 git clone https://github.com/b1-systems/keycloak-developer-deployment.git
 ```
 
@@ -73,24 +73,35 @@ git clone https://github.com/b1-systems/keycloak-developer-deployment.git
 ```shell
 mvn -f custom-auth-spi clean package
 mvn -f custom-jpa-user-storage clean package
-mvn -f custom-jpa-user-storage clean package
+# ...
 ```
 
 *Note:* This will also deploy the following files to the developer deployment:
 
-- Additional SQL for initialization of "postgres" to folder `./sql`
-- JAR files of the custom provider(s) to folder `./keycloak-custom/providers`
-- Custom provider-specific `keycloak.conf` snippets to `./keycloak-custom/conf/keycloak.conf.d`
+- Additional SQL from folder `${extension}/sql`
+- JAR files of the custom provider(s) from folder `${extension}/target`
+- Custom provider-specific `keycloak.conf` from folder `${extension}/conf`
+- Test scripts from `${extension}/tests`
+
+These resources will be added to the container images `keycloak-custom` and
+`keycloak-test` as necessary.
 
 ### 4. Build Customized Container Images
 
 This will build the following container images:
 
-* `keycloak-custom`: customized keycloak OCI that runs service "keycloak"
-* `keycloak-test` customized keycloak images that executes test procedures using `kcadm.sh` if compose profile "test" is selected
+* `keycloak-custom`: customized Keycloak container image that runs
+  service "keycloak" for interactive use and testing.
 
 ```shell
 docker compose -f keycloak-developer-deployment/compose.yml build
+```
+
+* `keycloak-test`: customized Keycloak container image that executes
+  test procedures using `kcadm.sh`, prints test results and exits
+  (run only if the compose profile "test" is selected).
+
+```shell
 docker compose --profile test -f keycloak-developer-deployment/compose.yml build
 ```
 
@@ -102,13 +113,15 @@ docker compose -f keycloak-developer-deployment/compose.yml up
 
 ### 6. Execute Tests
 
-Service `keycloak-test` from compose profile `test` will execute the following tests:
+For example, the service `keycloak-test` from compose profile `test` will
+execute the following tests from extension `custom-jpa-user-storage`:
 
-* 'custom-jpa-user-storage':
-  - Create user federation using custom provider
-  - Determine if expected test user is present
-  - Define custom user profile attribute
-  - Determine if attribute value of test user matches expected value
+- Create user federation using custom provider
+- Determine if expected test user is present
+- Define custom user profile attribute
+- Determine if attribute value of test user matches expected value
+
+To run all deployed tests:
 
 ```shell
 docker compose -f keycloak-developer-deployment/compose.yml --profile test up
