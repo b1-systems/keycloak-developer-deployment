@@ -2,7 +2,33 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "run compose up with container build",
+      "label": "Rebuild and restart compose deployment",
+      "type": "shell",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Run compose down with volume removal",
+        "Run compose up with container build"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+    },
+    {
+      "label": "Rebuild and restart compose deployment with test profile",
+      "type": "shell",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Run compose down with volume removal",
+        "Run compose up with container build and test profile"
+      ],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+    },
+    {
+      "label": "Run compose up with container build",
       "type": "docker-compose",
       "dockerCompose": {
         "up": {
@@ -12,14 +38,10 @@
         "files": [
           "${workspaceFolder}/compose.yml"
         ]
-      },
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
+      }
     },
     {
-      "label": "run compose up with container build and test profile",
+      "label": "Run compose up with container build and test profile",
       "type": "docker-compose",
       "dockerCompose": {
         "up": {
@@ -30,14 +52,10 @@
         "files": [
           "${workspaceFolder}/compose.yml"
         ]
-      },
-      "group": {
-        "kind": "test",
-        "isDefault": true
-      },
+      }
     },
     {
-      "label": "run compose down with volume removal",
+      "label": "Run compose down with volume removal",
       "type": "docker-compose",
       "dockerCompose": {
         "down": {
@@ -46,7 +64,7 @@
         "files": [
           "${workspaceFolder}/compose.yml"
         ]
-      },
+      }
     }
   ]
 }
