@@ -5,28 +5,29 @@
 This is a highly automated deployment of PostgreSQL, Keycloak and a custom user
 storage extension for training and development purposes.
 
-This deployment is used for interactive development and testing of the demo
-extension "custom-ipa-user-storage":
+This deployment is used for interactive development and testing of a series of
+Keycloak extensions for training and demonstrational purposes:
+
+* <https://github.com/b1-systems/custom-auth-spi>
 * <https://github.com/b1-systems/custom-jpa-user-storage>
+* <https://github.com/b1-systems/custom-ldap-enabled-mapper>
 
 ## Docker Compose Setup
 
 This project offers a Docker compose deployment with the following services:
 
 * "postgres":  
-  PostgreSQL server, configured for prepared transactions (required by Keycloak's XA transactions)
-  - database "keycloak" set up empty, ready for Keycloak installation
+  PostgreSQL server, configured for Keycloak's XA transactions
+  - database "keycloak" set up empty, ready for installation
   - local folder [sql](sql) mounted, every contained file will be processed during initialization
 
 * "keycloak":  
-  - using container image "keycloak-custom" built from folder
-  [keycloak-custom](keycloak-custom)
+  - using container image "keycloak-custom" built from folder [keycloak-custom](keycloak-custom)
   - started in development mode
 
 * "keycloak-test":  
   - only started when selecting compose profile "test"
-  - using container image "keycloak-test" built from folder
-  [keycloak-test](keycloak-test)
+  - using container image "keycloak-test" built from folder [keycloak-test](keycloak-test)
   - executes test procedures using `kcadm.sh`
 
 ## Support for VS Code and VSCodium
@@ -50,6 +51,9 @@ done
 
 ### 1. Install required Software:
 
+This developer deployment was tested using Debian GNU/linux 13 with Docker CE
+and compose plugin, JDK and Maven as provided by the distribution:
+
 ```shell
 sudo apt install \
   docker.io \
@@ -60,28 +64,36 @@ sudo apt install \
 
 ### 2. Clone Repositories for Keycloak Extension Development
 
-```shell
-git clone https://github.com/b1-systems/custom-auth-spi.git
-git clone https://github.com/b1-systems/custom-jpa-user-storage.git
-# ... other custom extensions
+Clone the developer deployment repo:
 
+```shell
 git clone https://github.com/b1-systems/keycloak-developer-deployment.git
 ```
 
-### 3. Build Custom Extension
+Clone the custom Keycloak extensions:
+
+```shell
+git clone https://github.com/b1-systems/custom-auth-spi.git
+git clone https://github.com/b1-systems/custom-jpa-user-storage.git
+git clone https://github.com/b1-systems/custom-ldap-enabled-mapper.git
+# ... other custom extensions, if any.
+```
+
+### 3. Build Custom Extensions
 
 ```shell
 mvn -f custom-auth-spi clean package
 mvn -f custom-jpa-user-storage clean package
-# ...
+mvn -f custom-ldap-enabled-mapper clean package
+# ... other custom extensions, if any.
 ```
 
-*Note:* This will also deploy the following files to the developer deployment:
+*Note:* The build tasks of the extensions deploy the following files to the developer deployment:
 
-- Additional SQL from folder `${extension}/sql`
 - JAR files of the custom provider(s) from folder `${extension}/target`
-- Custom provider-specific `keycloak.conf` from folder `${extension}/conf`
-- Test scripts from `${extension}/tests`
+- Custom provider-specific `keycloak.conf` from folder `${extension}/conf`, if any.
+- Additional SQL from folder `${extension}/sql`, if any.
+- Test scripts from `${extension}/tests`, if any.
 
 These resources will be added to the container images `keycloak-custom` and
 `keycloak-test` as necessary.
