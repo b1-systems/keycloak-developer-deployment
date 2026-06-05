@@ -8,8 +8,10 @@
 		},
 		{
 			"path": "../custom-jpa-user-storage"
+		},
+		{
+			"path": "../custom-ldap-enabled-mapper"
 		}
-
 	],
 	"settings": {}
 }
