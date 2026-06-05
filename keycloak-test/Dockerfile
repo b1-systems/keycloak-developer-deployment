@@ -6,7 +6,5 @@ RUN dnf install --installroot /mnt/rootfs jq --releasever 9 --setopt install_wea
 
 FROM quay.io/keycloak/keycloak
 COPY --from=ubi-micro-build /mnt/rootfs /
-RUN mkdir /results
-RUN chown keycloak:keycloak /results
 COPY tests /tests
 ENTRYPOINT /tests/index.sh

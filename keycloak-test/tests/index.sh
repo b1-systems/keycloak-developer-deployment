@@ -9,10 +9,10 @@ while read -r script ; do
     echo "### RUNNING TESTS: $script ..." >&2
     if ! "$script" ; then
         echo "### SOME OR ALL TESTS FAILED: $script" >&2
-        echo failed > /results/status
+        echo failed > /opt/keycloak/status.txt
     else
         echo "### ALL TESTS SUCCEEDED: $script" >&2
-        echo succeeded > /results/status
+        echo succeeded > /opt/keycloak/status.txt
     fi
 done < <(find "$dir" -name 'custom-*.sh')
 
