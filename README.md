@@ -2,9 +2,9 @@
 
 ## Overview
 
-This project provides a highly automated deployment of PostgreSQL,
-Keycloak and several custom extensions for Keycloak, intended for
-training and development purposes.
+This project provides a "semi-automated" deployment, based on Docker compose,
+of PostgreSQL, Keycloak and custom extensions for Keycloak. It is primarily
+intended for training and development purposes.
 
 See also:
 
