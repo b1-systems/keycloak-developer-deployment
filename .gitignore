@@ -1,4 +1,5 @@
 keycloak-custom/conf/keycloak.conf.d
+keycloak-custom/conf/truststores
 keycloak-custom/providers
 keycloak-test/tests/custom-*
 sql/custom-*.sql
