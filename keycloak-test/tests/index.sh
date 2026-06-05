@@ -5,6 +5,8 @@
 
 dir=$(readlink -f "$(dirname "$0")")
 
+echo running > /opt/keycloak/status.txt
+
 while read -r script ; do
     echo "### RUNNING TESTS: $script ..." >&2
     if ! "$script" ; then
@@ -17,5 +19,4 @@ while read -r script ; do
 done < <(find "$dir" -name 'custom-*.sh')
 
 echo "Entering idle mode ..." >&2
-
-while true ; do sleep 5 ; done
+tail -f /opt/keycloak/status.txt
