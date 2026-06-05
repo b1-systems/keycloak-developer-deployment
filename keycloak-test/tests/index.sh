@@ -9,10 +9,10 @@ while read -r script ; do
     echo "### RUNNING TESTS: $script ..." >&2
     if ! "$script" ; then
         echo "### SOME OR ALL TESTS FAILED: $script" >&2
-        echo failed > /tmp/result
+        echo failed > /results/status
     else
         echo "### ALL TESTS SUCCEEDED: $script" >&2
-        echo succeeded > /tmp/result
+        echo succeeded > /results/status
     fi
 done < <(find "$dir" -name 'custom-*.sh')
 
