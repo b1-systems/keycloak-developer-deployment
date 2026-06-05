@@ -16,4 +16,6 @@ while read -r script ; do
     fi
 done < <(find "$dir" -name 'custom-*.sh')
 
-read -r -p "Entering idle mode ..." noreply
+echo "Entering idle mode ..." >&2
+
+while true ; do sleep 5 ; done
