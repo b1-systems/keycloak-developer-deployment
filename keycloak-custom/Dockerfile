@@ -18,6 +18,9 @@ RUN bash -c "cat /opt/keycloak/conf/keycloak.conf.d/*.conf >> /opt/keycloak/conf
 RUN chown keycloak:keycloak /opt/keycloak/conf/keycloak.conf
 RUN rm -rf /opt/keycloak/conf/keycloak.conf.d
 
+# Add truststore certificates
+COPY --chown=keycloak:keycloak --chmod=644 conf/truststores /opt/keycloak/conf/truststores
+
 # Pre-build Keycloak
 RUN /opt/keycloak/bin/kc.sh build
 RUN rmdir /opt/keycloak/data/tmp
