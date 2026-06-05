@@ -3,7 +3,6 @@
   "tasks": [
     {
       "label": "Rebuild and restart compose deployment",
-      "type": "shell",
       "dependsOrder": "sequence",
       "dependsOn": [
         "Run compose down with volume removal",
@@ -16,7 +15,6 @@
     },
     {
       "label": "Rebuild and restart compose deployment with test profile",
-      "type": "shell",
       "dependsOrder": "sequence",
       "dependsOn": [
         "Run compose down with volume removal",
