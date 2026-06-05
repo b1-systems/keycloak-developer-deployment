@@ -2,11 +2,11 @@
 
 ## Overview
 
-This is a highly automated deployment of PostgreSQL, Keycloak and a custom user
-storage extension for training and development purposes.
+This project provides a highly automated deployment of PostgreSQL,
+Keycloak and several custom extensions for Keycloak, intended for
+training and development purposes.
 
-This deployment is used for interactive development and testing of a series of
-Keycloak extensions for training and demonstrational purposes:
+See also:
 
 * <https://github.com/b1-systems/custom-auth-spi>
 * <https://github.com/b1-systems/custom-jpa-user-storage>
@@ -17,18 +17,17 @@ Keycloak extensions for training and demonstrational purposes:
 This project offers a Docker compose deployment with the following services:
 
 * "postgres":  
-  PostgreSQL server, configured for Keycloak's XA transactions
   - database "keycloak" set up empty, ready for installation
   - local folder [sql](sql) mounted, every contained file will be processed during initialization
 
 * "keycloak":  
-  - using container image "keycloak-custom" built from folder [keycloak-custom](keycloak-custom)
-  - started in development mode
+  - launches Keycloak in development mode on port 8080/tcp (HTTP)
+  - container image "keycloak-custom" built from folder [keycloak-custom](keycloak-custom)
 
 * "keycloak-test":  
-  - only started when selecting compose profile "test"
-  - using container image "keycloak-test" built from folder [keycloak-test](keycloak-test)
+  - started by compose profile "test"
   - executes test procedures using `kcadm.sh`
+  - container image "keycloak-test" built from folder [keycloak-test](keycloak-test)
 
 ## Support for VS Code and VSCodium
 
