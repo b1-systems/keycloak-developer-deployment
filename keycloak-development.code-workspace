@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "../custom-ldap-enabled-mapper"
+		},
+		{
+			"path": "../keycloakify-starter"
 		}
 	],
 	"settings": {}
