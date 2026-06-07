@@ -13,6 +13,10 @@
 			"path": "../custom-ldap-enabled-mapper"
 		},
 		{
+			"path": "../demo-spring-boot-client"
+		},
+
+		{
 			"path": "../keycloakify-starter"
 		}
 	],
