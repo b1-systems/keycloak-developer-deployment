@@ -58,8 +58,7 @@ services:
       keycloak:
         condition: service_healthy
     healthcheck:
-      test: ["CMD-SHELL", "test -r /opt/keycloak/status.txt && test \"$(cat /opt/keycloak/status.txt)\" = succeeded"]
+      test: ["CMD-SHELL", "test \"$(cat /opt/keycloak/status.txt)\" = succeeded"]
       interval: 5s
       timeout: 5s
       retries: 30
-
