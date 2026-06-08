@@ -16,15 +16,18 @@ See also:
 
 This project offers a Docker compose deployment with the following services:
 
-* "postgres":  
+* "postgres":
   - database "keycloak" set up empty, ready for installation
-  - local folder [sql](sql) mounted, every contained file will be processed during initialization
+  - local folder [sql](sql) mounted
+    - every contained file will be processed during initialization
 
-* "keycloak":  
+* "keycloak":
   - launches Keycloak in development mode on port 8080/tcp (HTTP)
   - container image "keycloak-custom" built from folder [keycloak-custom](keycloak-custom)
+    - pre-built with custom provider JARs
+    - extensions to `keycloak.conf` if required by custom providers
 
-* "keycloak-test":  
+* "keycloak-test":
   - started by compose profile "test"
   - executes test procedures using `kcadm.sh`
   - container image "keycloak-test" built from folder [keycloak-test](keycloak-test)
